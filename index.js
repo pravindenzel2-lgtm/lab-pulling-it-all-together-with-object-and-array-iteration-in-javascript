@@ -114,3 +114,84 @@ function gameObject() {
         },
     };
 }
+
+// 1. Return the points scored by a player
+function numPointsScored(playerName) {
+    const game = gameObject();
+
+    for (const team of Object.values(game)) {
+        if (team.players[playerName]) {
+            return team.players[playerName].points;
+        }
+    }
+}
+
+// 2. Return the shoe size of a player
+function shoeSize(playerName) {
+    const game = gameObject();
+
+    for (const team of Object.values(game)) {
+        if (team.players[playerName]) {
+            return team.players[playerName].shoe;
+        }
+    }
+}
+
+// 3. Return the colors of a team
+function teamColors(teamName) {
+    const game = gameObject();
+
+    for (const team of Object.values(game)) {
+        if (team.teamName === teamName) {
+            return team.colors;
+        }
+    }
+}
+
+// 4. Return the names of both teams
+function teamNames() {
+    const game = gameObject();
+
+    return Object.values(game).map(team => team.teamName);
+}
+
+// 5. Return the jersey numbers of players in a team
+function playerNumbers(teamName) {
+    const game = gameObject();
+
+    for (const team of Object.values(game)) {
+        if (team.teamName === teamName) {
+            return Object.values(team.players).map(player => player.number);
+        }
+    }
+}
+
+// 6. Return all statistics for a player
+function playerStats(playerName) {
+    const game = gameObject();
+
+    for (const team of Object.values(game)) {
+        if (team.players[playerName]) {
+            return team.players[playerName];
+        }
+    }
+}
+
+// 7. Find the player with the largest shoe size
+// and return that player's rebounds
+function bigShoeRebounds() {
+    const game = gameObject();
+    let largestShoe = 0;
+    let rebounds = 0;
+
+    for (const team of Object.values(game)) {
+        for (const player of Object.values(team.players)) {
+            if (player.shoe > largestShoe) {
+                largestShoe = player.shoe;
+                rebounds = player.rebounds;
+            }
+        }
+    }
+
+    return rebounds;
+}
